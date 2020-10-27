@@ -20,5 +20,5 @@ from apps.api.views import api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', api, name='api')
+    path('solardata/', api, name='solardata')
 ]
