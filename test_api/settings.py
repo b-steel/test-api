@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'test_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE'),
-        'NAME': config('DB_NAME'),
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'USER': config('DB_USER'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-        'PASSWORD': config('DB_PASSWORD'),
+        # 'NAME': config('DB_NAME'),
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'USER': config('DB_USER'),
+        # 'HOST': config('DB_HOST'),
+        # 'PORT': config('DB_PORT'),
+        # 'PASSWORD': config('DB_PASSWORD'),
     }
 }
 
