@@ -21,7 +21,7 @@ def get_next_interval(interval):
 
 
 
-def api(request):
+def api_call(request):
     if request.method == 'GET':
         id = request.GET['id']
 

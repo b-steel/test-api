@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from apps.api.views import api
+from apps.api.views import api_call
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('solardata/', api, name='solardata')
+    path('solardata/', api_call, name='solardata')
 ]
