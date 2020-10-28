@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import random
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from .models import SolarData
 
 
@@ -11,14 +11,23 @@ def create_random_field():
     return random.random()*maximum
 
 
+def get_next_interval(interval):
+    BASE_TIME = datetime.fromisoformat('2020-10-28T09:30:00.0000')
+    now = datetime.now()
+    td = now - BASE_TIME
+    
+    n = td // timedelta(seconds=interval)
+    return BASE_TIME + n * timedelta(seconds=interval)
+
+
+
 def api(request):
     if request.method == 'GET':
-        n = datetime.now(tz=timezone.utc)
         id = request.GET['id']
 
         data = {
             id: {
-                'timestamp': n.isoformat().replace('+00:00', 'Z')
+                'timestamp': get_next_interval(300).isoformat().replace('+00:00', 'Z')
             }
             }
 
