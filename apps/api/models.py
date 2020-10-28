@@ -4,9 +4,18 @@ from django.db import models
 
 class SolarProject(models.Model):
     name = models.CharField(max_length=20)
-    data = models.JSONField(null=True, blank=True)
-    number_of_fields = models.IntegerField(default=1)
-
 
     class Meta:
         ordering = ('name', )
+
+class Sensor(models.Model):
+    name = models.CharField(max_length=20)
+    project = models.ForeignKey(SolarProject, related_name='sensors', on_delete=models.CASCADE)
+    
+
+class Data(models.Model):
+    timestamp = models.DateTimeField()
+    value = models.FloatField()
+    sensor = models.ForeignKey(Sensor, related_name='data', on_delete=models.CASCADE)
+    
+    
