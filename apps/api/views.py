@@ -12,7 +12,7 @@ def create_random_field():
 
 
 def get_next_interval(interval):
-    BASE_TIME = datetime.fromisoformat('2020-10-28T09:30:00.0000')
+    BASE_TIME = datetime.fromisoformat('2020-10-28T09:30:00.000000')
     now = datetime.now()
     td = now - BASE_TIME
     
