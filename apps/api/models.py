@@ -2,8 +2,11 @@ from django.db import models
 
 # Create your models here.
 
-class SolarData(models.Model):
-    data = models.JSONField()
+class SolarProject(models.Model):
+    name = models.CharField(max_length=20)
+    data = models.JSONField(null=True, blank=True)
+    number_of_fields = models.IntegerField(default=1)
+
 
     class Meta:
-        verbose_name_plural = 'SolarData'
+        ordering = ('name', )
