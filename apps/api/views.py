@@ -6,9 +6,9 @@ from datetime import datetime, timezone, timedelta
 from .models import SolarProject, Sensor, Data
 
 
-def create_random_value():
-    maximum = 100
-    return random.random()*maximum
+def create_random_value(base, stdev):
+    
+    return random.random()*stdev + base
 
 
 def get_next_interval(interval):
@@ -24,9 +24,10 @@ def get_next_interval(interval):
 def api_call(request):
     if request.method == 'GET':
         name = request.GET['id']
+        i = request.GET['interval']
         
         # Get timestamp
-        ts = get_next_interval(300).isoformat().replace('+00:00', 'Z')
+        ts = get_next_interval(int(i)).isoformat().replace('+00:00', 'Z')
         JSONdata = {
             name: {
                 'timestamp': ts,
@@ -39,12 +40,14 @@ def api_call(request):
         if created:
             number_of_fields = random.randint(0, 10)
             for i in range(number_of_fields):
-                f = Sensor(name='sensor'+str(i), project=project)
+                base = random.randint(0, 10000)
+                stdev = random.randint(0, 100) * base / 100
+                f = Sensor(name='sensor'+str(i), project=project, value_baseline=base, value_stdev=stdev)
                 f.save()
 
         # Create Random Data
         for sensor in project.sensors.all():
-            d = Data.objects.create(timestamp=ts, sensor=sensor, value=create_random_value())
+            d = Data.objects.create(timestamp=ts, sensor=sensor, value=create_random_value(sensor.value_baseline, sensor.value_stdev))
             sensor.data.add(d)
 
             JSONdata[name][sensor.name] = d.value

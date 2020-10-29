@@ -1,4 +1,5 @@
 from django.db import models
+import random
 
 # Create your models here.
 
@@ -15,6 +16,8 @@ class SolarProject(models.Model):
 class Sensor(models.Model):
     name = models.CharField(max_length=20)
     project = models.ForeignKey(SolarProject, related_name='sensors', on_delete=models.CASCADE)
+    value_baseline = models.IntegerField()
+    value_stdev = models.IntegerField()
     
 
 class Data(models.Model):
