@@ -12,7 +12,7 @@ def create_random_value():
 
 
 def get_next_interval(interval):
-    BASE_TIME = datetime.fromisoformat('2020-10-28T09:30:00.000000')
+    BASE_TIME = datetime(year=2020, month=10, day=26, hour=9, minute= 30, second= 0)
     now = datetime.now()
     td = now - BASE_TIME
     
