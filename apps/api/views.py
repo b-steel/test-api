@@ -12,11 +12,13 @@ def create_random_value(base, stdev):
 
 
 def get_next_interval(interval):
-    BASE_TIME = datetime(year=2020, month=10, day=26, hour=9, minute= 30, second= 0)
-    now = datetime.now()
-    td = now - BASE_TIME
+    UTCOFFSET = -8
+    TZ = timezone(UTCOFFSET, 'PST')
+    BASE_TIME = datetime(year=2020, month=10, day=26, hour=9, minute= 30, second= 0, tzinfo=TZ)
+    now = datetime.now(tz=TZ)
+    tdelt = now - BASE_TIME
     
-    n = td // timedelta(seconds=interval)
+    n = tdelt // timedelta(seconds=interval)
     return BASE_TIME + n * timedelta(seconds=interval)
 
 
