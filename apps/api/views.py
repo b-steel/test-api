@@ -12,7 +12,7 @@ def create_random_value(base, stdev):
 
 
 def get_next_interval(interval):
-    UTCOFFSET = -8
+    UTCOFFSET = timedelta(hours=-8)
     TZ = timezone(UTCOFFSET, 'PST')
     BASE_TIME = datetime(year=2020, month=10, day=26, hour=9, minute= 30, second= 0, tzinfo=TZ)
     now = datetime.now(tz=TZ)
