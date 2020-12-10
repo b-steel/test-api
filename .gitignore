@@ -57,4 +57,7 @@ ENV/
 env.bak/
 venv.bak/
 
+# heroku
+heroku.yml
+
 

@@ -1,7 +1,7 @@
 setup:
   config:
-    SECRET_KEY: $blaxn(ph39@wqc^+b9f=ikjkq--zt^+j9an6#8q7vccz&c3d#
-    DEBUG: True
+    DJANGO_DEBUG: True
+    DJANGO_SECRET_KEY: '&7+od6r_4k8&x_uxv7*%)sqd28!c2+!a_wre!pqw)y(^gr)e$_'
 build:
   docker:
     web: Dockerfile

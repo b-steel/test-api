@@ -12,4 +12,4 @@ COPY . .
 # migrate
 RUN python manage.py migrate
 
-CMD python manage.py runserver
+CMD gunicorn --bind 0.0.0.0:$PORT test_api.wsgi:application
