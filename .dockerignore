@@ -1,6 +1,0 @@
-.gitignore
-staticfiles/
-Pipfile
-Pipfile.lock
-Procfile
-README.md
