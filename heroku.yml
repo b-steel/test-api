@@ -1,0 +1,9 @@
+setup:
+  config:
+    SECRET_KEY: $blaxn(ph39@wqc^+b9f=ikjkq--zt^+j9an6#8q7vccz&c3d#
+    DEBUG: True
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: python manage.py runserver

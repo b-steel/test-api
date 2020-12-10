@@ -12,10 +12,9 @@ def create_random_value(base, stdev):
 
 
 def get_next_interval(interval):
-    UTCOFFSET = -8
-    TZ = timezone(UTCOFFSET, 'PST')
-    BASE_TIME = datetime(year=2020, month=10, day=26, hour=9, minute= 30, second= 0, tzinfo=TZ)
-    now = datetime.now(tz=TZ)
+    
+    BASE_TIME = datetime(year=2020, month=10, day=26, hour=9, minute= 30, second= 0, tzinfo=timezone.utc) 
+    now = datetime.now(timezone.utc)
     tdelt = now - BASE_TIME
     
     n = tdelt // timedelta(seconds=interval)
@@ -24,9 +23,11 @@ def get_next_interval(interval):
 
 
 def api_call(request):
+
     if request.method == 'GET':
         name = request.GET['id']
         i = request.GET['interval']
+    
         
         # Get timestamp
         ts = get_next_interval(int(i)).isoformat().replace('+00:00', 'Z')
@@ -53,6 +54,7 @@ def api_call(request):
             sensor.data.add(d)
 
             JSONdata[name][sensor.name] = d.value
+            
         
         # Save
         project.save()
