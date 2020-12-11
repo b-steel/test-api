@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from apps.api.views import api_call
+from apps.api.views import api_call, home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', api_call, name='solardata')
+    path('api/', api_call, name='api_call'),
+    path('', home, name='home')
 ]

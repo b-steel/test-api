@@ -62,3 +62,8 @@ def api_call(request):
         return JsonResponse(JSONdata)
     else:
         return render(request, 'api/post.html', {})
+
+def home(request):
+    if request.method == 'GET':
+        return render(request, 'api/home.html', {})
+    

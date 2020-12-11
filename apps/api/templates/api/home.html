@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Meta-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--Title-->
+        <title>Home | Test Api</title>
+        
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="description">
+
+            <h1>Solar Data API</h1>
+            <p>This is a stand-in for a real API that yields data</p>
+            <p>The API accepts GET requests with the arguments <code>id</code> and <code>interval</code> to /api/</p>
+            <p>Example: <code>curl 'http://127.0.0.1:8000/api/?id=curl&interval=5'</code></p>
+            <p>
+                <code>id</code>
+                is the project id.  The API accepts any and all project id's and will generate a project for that id with a random number of sensors between 0 and 10.  `
+                <code>interval</code>
+                is the update interval, i.e. how often the timestamp of the sensors will change.  If you query the API multiple times within an interval it will return the same information both times
+            </p>
+        </div>
+        <div class="test">
+            <p>If you'd like to try out the API without using curl or typing into your browser, you can sample it below</p>
+            <div id="form">
+                <p>
+
+                    <label for="input-id">Proejct ID</label>
+                    <input type="text" name="input-id" id="input-id">
+                </p>
+                <p>
+
+                    <label for="input-interval">Update Interval (seconds)</label>
+                    <input type="number" name="input-interval" id="input-interval">
+                </p>
+                <label for="button-query"></label>
+                <button type="button" name="button-query" id="button-query">Query API</button>
+            </div>
+        </div>
+        <div class="" id="result">
+
+        </div>
+
+        <!-- Scripts     -->
+        <script>
+            $("#button-query").click(function(event){
+                var id = $("#input-id").val();
+                var interval = $("#input-interval").val();
+
+                $.get({
+                    url: "{% url 'api_call' %}",
+                    data: {
+                        id: id,
+                        interval: interval
+                    },
+                    dataType: 'json',
+                    success: function(resp) {
+                        
+                        let pre = document.createElement('pre')
+                        pre.innerHTML = JSON.stringify(resp, null, 4)
+                        $("#result").empty().append(pre)
+                    }
+                });
+            });
+        </script>
+    
+    </body>
+</html>
