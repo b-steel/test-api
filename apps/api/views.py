@@ -48,14 +48,25 @@ def api_call(request):
                 f = Sensor(name='sensor'+str(i), project=project, value_baseline=base, value_stdev=stdev)
                 f.save()
 
-        # Create Random Data
-        for sensor in project.sensors.all():
-            d = Data.objects.create(timestamp=ts, sensor=sensor, value=create_random_value(sensor.value_baseline, sensor.value_stdev))
-            sensor.data.add(d)
+        if project.last_queried == ts:
+            for sensor in project.sensors.all():
+                d = Data.objects.get(timestamp=ts)
+                JSONdata[name][sensor.name] = d.value
 
-            JSONdata[name][sensor.name] = d.value
-            
-        
+        else:
+            # Create Random Data
+            for sensor in project.sensors.all():
+                d = Data.objects.create(
+                    timestamp=ts, 
+                    sensor=sensor, 
+                    value=create_random_value(sensor.value_baseline, sensor.value_stdev)
+                    )
+                sensor.data.add(d)
+
+                JSONdata[name][sensor.name] = d.value
+
+        # Set last query ts   
+        project.last_queried = ts
         # Save
         project.save()
 
