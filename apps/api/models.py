@@ -1,10 +1,12 @@
 from django.db import models
 import random
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
 class SolarProject(models.Model):
     name = models.CharField(max_length=20)
+    last_queried = models.CharField(_("last queried"), max_length=50)
 
     def __str__(self):
         return f'Project: {self.name}'
