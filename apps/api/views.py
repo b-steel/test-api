@@ -50,7 +50,7 @@ def api_call(request):
 
         if project.last_queried == ts:
             for sensor in project.sensors.all():
-                d = Data.objects.get(timestamp=ts)
+                d = Data.objects.filter(timestamp=project.last_queried, sensor=sensor)[0]
                 JSONdata[name][sensor.name] = d.value
 
         else:

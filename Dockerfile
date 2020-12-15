@@ -12,4 +12,5 @@ COPY . .
 # migrate
 RUN python manage.py migrate
 
-CMD gunicorn --bind 0.0.0.0:$PORT test_api.wsgi:application
+# CMD gunicorn --bind 0.0.0.0:$PORT test_api.wsgi:application
+CMD ["/usr/local/bin/python3", "manage.py", "runserver", "0.0.0.0:8000" ]
