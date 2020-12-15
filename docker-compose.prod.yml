@@ -1,0 +1,13 @@
+version: '3.8'
+
+services: 
+  web:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    image: solar_api:prod # since both image and build are specified this specifies the name:tag
+    command: ["/usr/local/bin/gunicorn", "test_api.wsgi:application", "--bind", "0.0.0.0:8000" ]
+    ports: 
+      - 8006:8000
+    env_file: 
+      - ./.env
