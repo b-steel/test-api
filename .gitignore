@@ -58,5 +58,5 @@ env.bak/
 venv.bak/
 
 # heroku
-heroku.sh
+heroku.fish
 
