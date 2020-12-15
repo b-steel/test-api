@@ -58,5 +58,5 @@ env.bak/
 venv.bak/
 
 # heroku
-settings_local.py
+heroku.sh
 
