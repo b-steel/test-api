@@ -5,14 +5,16 @@ This is a stand-in for a real API that yields data.  The API accepts GET request
 `interval` is the update interval, i.e. how often the timestamp of the sensors will change.  If you query the API multiple times within an interval it will return the same information both times.
 
 The API and returns a json object of the form:
-{
-  "xxxx": {
-    "field1":  single number corresponding to timestamp
-    "field2": single number corresponding to time stamp
-    "timestamp": "isoformatted time stamp in UTC"
-...
-    }
-}
+```
+  {
+    "xxxx": {
+      "field1":  single number corresponding to timestamp
+      "field2": single number corresponding to time stamp
+      "timestamp": "isoformatted time stamp in UTC"
+  ...
+      }
+  }
+```
 Note: xxxx is the id given in the request.
 
 The only guaranteed field in the response will be "timestamp" which will always be iso-formatted and in UTC (with the "Z") convention.
