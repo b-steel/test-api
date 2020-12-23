@@ -1,7 +1,5 @@
 # Test API
-This is a stand-in for a real API that yields data.
-The API accepts GET requests with the arguments `id` and `interval` to /api/
-You can try it out [here](https://solar-flaare.herokuapp.com/api/?id=myproject&interval=5) or with curl `curl 'https://solar-flaare.herokuapp.com/api/?id=with-curl&interval=5'`
+This is a stand-in for a real API that yields data.  The API accepts GET requests with the arguments `id` and `interval` to /api/.  You can try it out [here](https://solar-flaare.herokuapp.com/api/?id=myproject&interval=5) or with curl `curl 'https://solar-flaare.herokuapp.com/api/?id=with-curl&interval=5'`
 
 `id` is the project id.  The API accepts any and all project id's and will generate a project for that id with a random number of sensors between 0 and 10.  
 `interval` is the update interval, i.e. how often the timestamp of the sensors will change.  If you query the API multiple times within an interval it will return the same information both times.
